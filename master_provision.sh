@@ -5,14 +5,14 @@ if ! `grep puppet /etc/hosts` ; then
 127.0.0.1 puppet pe-puppet pe-puppet.localdomain
 EOF
 fi
-if ! [ -f /vagrant/files/puppet-enterprise-2015.2.1-el-7-x86_64.tar ] ; then
-  curl http://enterprise.delivery.puppetlabs.net/2015.2/ci-ready/puppet-enterprise-2015.2.2-rc0-1-g788e83f-el-7-x86_64.tar > /vagrant/files/puppet-enterprise-2015.2.1-el-7-x86_64.tar
+if ! [ -f /vagrant/files/puppet.tar ] ; then
+  curl http://enterprise.delivery.puppetlabs.net/2015.2/preview/puppet-enterprise-2015.2.1-rc1-5-g0d9d47c-el-7-x86_64.tar > /vagrant/files/puppet.tar
 fi
-if ! [ -d $HOME/puppet-enterprise-2015.2.1-el-7-x86_64 ] ; then
-  tar xvf /vagrant/files/puppet-enterprise-2015.2.1-el-7-x86_64.tar -C $HOME
+if ! [ -d $HOME/puppet ] ; then
+  tar xvf /vagrant/files/puppet.tar -C $HOME
 fi
 if ! [ -d /opt/puppetlabs ] ; then
-  $HOME/puppet-enterprise-2015.2.1-el-7-x86_64/puppet-enterprise-installer -a /vagrant/files/master.answers
+  $HOME/puppet*/puppet-enterprise-installer -a /vagrant/files/master.answers
 fi
 ln -s /vagrant/cisco-network-puppet-module /etc/puppetlabs/code/modules/cisco
 ln -s /vagrant/netdev_stdlib /etc/puppetlabs/code/modules/netdev_stdlib
